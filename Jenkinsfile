@@ -24,7 +24,7 @@ pipeline {
         stage('Deploying Code') {
             steps {
 
-                sh 'sudo scp -r build/ ubuntu@107.23.97.95:/var/www/'
+                sh 'scp -r build/ ubuntu@107.23.97.95:/var/www/'
             }
         }
     }
