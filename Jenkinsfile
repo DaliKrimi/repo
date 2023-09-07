@@ -1,32 +1,40 @@
 pipeline {
     agent any
 
-    stages{
-        stage('Geting Code'){
+    stages {
+        stage('Getting Code') {
             steps {
                 checkout scm
             }
         }
 
-        stage('Installing dependencies'){
+        stage('Installing Dependencies') {
             steps {
                 tools {
-                    'NodeJS-16'
+                    nodejs '16'
                 }
                 sh 'npm install'
             }
         }
 
-        stage('Building project') {
+        stage('Building Project') {
             steps {
                 sh 'npm run build'
             }
         }
 
-        stage('Deploying code') {
+        stage('Deploying Code') {
             steps {
+
                 sh 'scp -r build/ ubuntu@107.23.97.95:/etc/nginx/sites-enabled'
             }
+        }
+    }
+
+    post {
+        always {
+            // Clean up the workspace
+            cleanWs()
         }
     }
 }
