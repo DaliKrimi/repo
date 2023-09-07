@@ -28,10 +28,5 @@ pipeline {
                 sh 'scp -r build/ ubuntu@107.23.97.95:/etc/nginx/sites-enabled'
             }
         }
-        post {
-            always {
-                cleanWs()
-            }
-        }
     }
 }
