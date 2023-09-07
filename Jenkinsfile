@@ -11,7 +11,7 @@ pipeline {
         stage('Installing dependencies'){
             steps {
                 tools {
-                    nodejs '14'
+                    'NodeJS-16'
                 }
                 sh 'npm install'
             }
