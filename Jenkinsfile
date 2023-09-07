@@ -13,5 +13,17 @@ pipeline {
                 sh 'npm install'
             }
         }
+         stage('Building Project') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+
+        stage('Deploying Code') {
+            steps {
+
+                sh 'scp -r build/ ubuntu@107.23.97.95:/etc/nginx/sites-enabled'
+            }
+        }
     }
 }
