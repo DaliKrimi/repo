@@ -15,6 +15,7 @@ pipeline {
         }
          stage('Building Project') {
             steps {
+                sh 'npm --depth 20 update --save caniuse-lite browserslist'
                 sh 'npm run build'
             }
         }
